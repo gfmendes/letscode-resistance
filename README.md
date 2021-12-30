@@ -19,6 +19,7 @@ Test cases also provides examples and data to test corner cases.
 - Resource names (Weapon, Ammunition, Water and Food ) are case-sensitive and are not being validated
 during Rebel creation.
 - Rebel Entity is returned in some APIs instead of and proper DTO.
+- Generic exceptions to deal with illegal arguments and not found entities.
 - Missing test cases to some edge cases such division by 0 in the reports.
 
 ### This app was created to address Let's Code challenge and was created by Guilherme Mendes.
