@@ -1,4 +1,4 @@
-##Overall info
+## Overall info
 This app is compiled using Java 17. It runs on top of Spring Boot and uses H2 as database.
 
 ## Building and tests
