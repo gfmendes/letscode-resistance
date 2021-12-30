@@ -6,7 +6,6 @@ import com.letscode.resistance.entity.Location;
 import com.letscode.resistance.entity.Rebel;
 import com.letscode.resistance.enums.Genre;
 import com.letscode.resistance.enums.RebelStatus;
-import com.letscode.resistance.repository.LocationRepository;
 import com.letscode.resistance.repository.RebelRepository;
 import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +17,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class RebelService {
 
+  public static final int MAX_NUMBER_OF_TREASON_REPORTS = 3;
+
   private final RebelRepository rebelRepository;
-  private final LocationRepository locationRepository;
 
   public Rebel findRebel(Long rebelId) {
     return rebelRepository
@@ -45,7 +45,7 @@ public class RebelService {
     Rebel rebel = findRebel(rebelId);
     rebel.addTreasonOccurrence(reporterId);
 
-    if (rebel.getTreasonOccurrences().size() >= 3) {
+    if (rebel.getTreasonOccurrences().size() >= MAX_NUMBER_OF_TREASON_REPORTS) {
       rebel.setStatus(RebelStatus.TRAITOR);
       log.warn("Rebel {} was marked as {}", rebel.getId(), RebelStatus.TRAITOR);
     }
