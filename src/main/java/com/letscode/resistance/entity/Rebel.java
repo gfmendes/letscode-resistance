@@ -1,5 +1,7 @@
-package com.letscode.starwarresistance.entity;
+package com.letscode.resistance.entity;
 
+import com.letscode.resistance.enums.Genre;
+import com.letscode.resistance.enums.RebelStatus;
 import com.vladmihalcea.hibernate.type.json.JsonType;
 import java.util.HashSet;
 import java.util.Map;
@@ -8,19 +10,27 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 @Entity
 @TypeDef(name = "json", typeClass = JsonType.class)
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Rebel {
 
   @Id
@@ -31,9 +41,11 @@ public class Rebel {
 
   private Integer age;
 
-  private Integer genre; // TODO: Enum
+  @Enumerated(EnumType.STRING)
+  private Genre genre;
 
-  private boolean traitor;
+  @Enumerated(EnumType.STRING)
+  private RebelStatus status;
 
   @OneToOne(mappedBy = "rebel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Location location;
@@ -58,6 +70,10 @@ public class Rebel {
     treasonOccurrence.setTraitorRebel(this);
     treasonOccurrence.setReporterId(reporterId);
     treasonOccurrences.add(treasonOccurrence);
+  }
+
+  public boolean isTraitor() {
+    return this.status.equals(RebelStatus.TRAITOR);
   }
 
   @Override

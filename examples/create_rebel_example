@@ -1,0 +1,18 @@
+curl --location --request POST 'localhost:8080/api/v1/rebel/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Luke",
+    "age": 25,
+    "genre": "Man",
+    "location": {
+        "name": "xyz",
+        "latitude": 12345,
+        "longitude": 98765
+    },
+    "inventory": {
+        "WEAPON": 10,
+        "AMMUNITION": 10,
+        "WATER": 1000,
+        "FOOD": 9
+    }
+}'

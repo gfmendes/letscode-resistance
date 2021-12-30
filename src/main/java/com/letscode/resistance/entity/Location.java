@@ -1,4 +1,4 @@
-package com.letscode.starwarresistance.entity;
+package com.letscode.resistance.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;

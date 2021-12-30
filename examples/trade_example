@@ -1,0 +1,24 @@
+curl --location --request POST 'localhost:8080/api/v1/rebel/trade_items' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "traders": [
+        {
+            "rebelId": 1,
+            "items": {
+                "WEAPON": 4,
+                "AMMUNITION": 4,
+                "WATER": 3,
+                "FOOD": 1
+            }
+        },
+        {
+            "rebelId": 2,
+            "items": {
+                "WEAPON": 4,
+                "AMMUNITION": 4,
+                "WATER": 3,
+                "FOOD": 1
+            }
+        }
+    ]
+}'

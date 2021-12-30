@@ -1,0 +1,5 @@
+curl --location --request POST 'localhost:8080/api/v1/rebel/1/report_treason' \
+--header 'Content-Type: application/json' \
+--data-raw '    {
+       "reporterId" : "2"
+    }'
